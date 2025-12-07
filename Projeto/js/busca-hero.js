@@ -1,5 +1,3 @@
-
-
 console.log('🔴 INICIANDO BUSCA-HERO.JS');
 
 let todosLocaisDisponiveis = [];
@@ -16,9 +14,9 @@ async function carregarLocaisDisponiveis() {
         console.log('📥 Carregando todos os locais...');
         
         const formData = new FormData();
-        formData.append('action', 'listar_todos'); 
+        formData.append('action', 'listar_todos');
 
-        const response = await fetch('includes/roteiro_handler.php', { 
+        const response = await fetch('includes/pontos_handler.php', {
             method: 'POST',
             body: formData
         });
@@ -158,7 +156,7 @@ function buscarLocaisHero(termo) {
         return nomeA.localeCompare(nomeB);
     });
 
-    console.log('🔍', resultados.length, 'resultados encontrados');
+    console.log('📈', resultados.length, 'resultados encontrados');
     
     if (resultados.length > 0) {
         console.log('📋 Primeiros resultados:', resultados.slice(0, 3).map(r => r.Nome));
@@ -178,7 +176,7 @@ function exibirSugestoesHero(resultados, termo) {
     if (resultados.length === 0) {
         suggestoesDiv.innerHTML = `
             <div class="sugestao-vazia-hero">
-                <span style="font-size: 2rem; display: block; margin-bottom: 8px;">🔍</span>
+                <span style="font-size: 2rem; display: block; margin-bottom: 8px;">📍</span>
                 <p style="margin: 0 0 4px 0; font-weight: 600; color: #333;">Nenhum local encontrado</p>
                 <small style="color: #666;">Tente buscar por "praia", "museu" ou nome de cidade</small>
             </div>
@@ -188,7 +186,6 @@ function exibirSugestoesHero(resultados, termo) {
     }
 
     suggestoesDiv.innerHTML = resultados.map(local => {
-        
         const foto = local.Foto_Capa || local.Foto_Perfil || 'data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" width="100" height="100"%3E%3Crect fill="%23ddd" width="100" height="100"/%3E%3Ctext x="50%25" y="50%25" text-anchor="middle" fill="%23999" font-size="14" dy=".3em"%3ESem Foto%3C/text%3E%3C/svg%3E';
         const nomeDestacado = destacarTermo(local.Nome, termo);
         const nomeEscapado = (local.Nome || '').replace(/'/g, "\\'").replace(/"/g, '\\"');

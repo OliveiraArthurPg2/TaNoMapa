@@ -12,10 +12,10 @@ $logado = estaLogado();
 <link rel="stylesheet" href="css/style-principal.css?v=2.0">
 <link rel="stylesheet" href="css/style-modal.css?v=2.0">
 </head>
-<body>
+<body data-page="index">
    <header>
     <div class="logo">
-        <div class="logo-icon">🌎</div>
+        <div class="logo-icon">🌍</div>
         <span>Ta no Mapa</span>
     </div>
     <nav>
@@ -134,24 +134,24 @@ $logado = estaLogado();
                 <button class="modal-close" onclick="fecharModal()">×</button>
             </div>
             <div class="modal-body">
-                <form id="formRoteiro">
+                <form id="formRoteiroIndex">
                     <div class="form-group">
-                        <label for="nomeRoteiro">Nome do Roteiro *</label>
-                        <input type="text" id="nomeRoteiro" name="nome" required placeholder="Ex: Tour pelo Centro Histórico">
+                        <label for="nomeRoteiroIndex">Nome do Roteiro *</label>
+                        <input type="text" id="nomeRoteiroIndex" name="nome" required placeholder="Ex: Tour pelo Centro Histórico">
                     </div>
 
                     <div class="form-group">
-                        <label for="bioRoteiro">Descrição do Roteiro</label>
-                        <textarea id="bioRoteiro" name="bio" rows="3" placeholder="Descreva seu roteiro (opcional)..."></textarea>
+                        <label for="bioRoteiroIndex">Descrição do Roteiro</label>
+                        <textarea id="bioRoteiroIndex" name="bio" rows="3" placeholder="Descreva seu roteiro (opcional)..."></textarea>
                     </div>
 
                     <div class="form-group">
                         <label>Locais do Roteiro * (mínimo 2)</label>
-                        <input type="text" id="buscaPontos" class="search-pontos" placeholder="🔍 Buscar local..." onkeyup="buscarPontos(this.value)">
+                        <input type="text" id="buscaPontosIndex" class="search-pontos" placeholder="🔍 Buscar local..." onkeyup="buscarPontosIndex(this.value)">
                         
-                        <div id="resultadosBusca" class="search-results"></div>
+                        <div id="resultadosBuscaIndex" class="search-results"></div>
                         
-                        <div id="pontosSelecionados" class="pontos-selecionados">
+                        <div id="pontosSelecionadosIndex" class="pontos-selecionados">
                             <p class="aviso-vazio">Nenhum local adicionado ainda. Use a busca acima para adicionar.</p>
                         </div>
                     </div>
@@ -170,16 +170,16 @@ $logado = estaLogado();
                 <button class="modal-close" onclick="fecharModal()">×</button>
             </div>
             <div class="modal-body">
-                <form id="formPonto">
+                <form id="formPontoIndex">
                     <div class="form-group">
-                        <label for="nomePonto">Nome do Local *</label>
-                        <input type="text" id="nomePonto" name="nome" required placeholder="Ex: Museu de Arte Moderna">
+                        <label for="nomePontoIndex">Nome do Local *</label>
+                        <input type="text" id="nomePontoIndex" name="nome" required placeholder="Ex: Museu de Arte Moderna">
                     </div>
 
                     <div class="form-row">
                         <div class="form-group">
-                            <label for="tipoPonto">Tipo *</label>
-                            <select id="tipoPonto" name="tipo" required>
+                            <label for="tipoPontoIndex">Tipo *</label>
+                            <select id="tipoPontoIndex" name="tipo" required>
                                 <option value="">Selecione</option>
                                 <option value="Museu">Museu</option>
                                 <option value="Parque">Parque</option>
@@ -195,31 +195,31 @@ $logado = estaLogado();
                         </div>
 
                         <div class="form-group">
-                            <label for="localidadePonto">Cidade/Estado *</label>
-                            <input type="text" id="localidadePonto" name="localidade" required placeholder="Ex: São Paulo, SP">
+                            <label for="localidadePontoIndex">Cidade/Estado *</label>
+                            <input type="text" id="localidadePontoIndex" name="localidade" required placeholder="Ex: São Paulo, SP">
                         </div>
                     </div>
 
                     <div class="form-group">
-                        <label for="enderecoPonto">Endereço Completo *</label>
-                        <input type="text" id="enderecoPonto" name="endereco" required placeholder="Ex: Av. Paulista, 1578">
+                        <label for="enderecoPontoIndex">Endereço Completo *</label>
+                        <input type="text" id="enderecoPontoIndex" name="endereco" required placeholder="Ex: Av. Paulista, 1578">
                     </div>
 
                     <div class="form-group">
-                        <label for="bioPonto">Descrição</label>
-                        <textarea id="bioPonto" name="bio" rows="3" placeholder="Descreva o local (opcional)..."></textarea>
+                        <label for="bioPontoIndex">Descrição</label>
+                        <textarea id="bioPontoIndex" name="bio" rows="3" placeholder="Descreva o local (opcional)..."></textarea>
                     </div>
 
                     <div class="form-row">
                         <div class="form-group">
-                            <label for="fotoPerfilPonto">Foto de Perfil</label>
-                            <input type="file" id="fotoPerfilPonto" name="fotoPerfil" accept="image/*">
+                            <label for="fotoPerfilPontoIndex">Foto de Perfil</label>
+                            <input type="file" id="fotoPerfilPontoIndex" name="fotoPerfil" accept="image/*">
                             <small class="form-hint">Imagem principal do local</small>
                         </div>
 
                         <div class="form-group">
-                            <label for="fotoCapaPonto">Foto de Capa</label>
-                            <input type="file" id="fotoCapaPonto" name="fotoCapa" accept="image/*">
+                            <label for="fotoCapaPontoIndex">Foto de Capa</label>
+                            <input type="file" id="fotoCapaPontoIndex" name="fotoCapa" accept="image/*">
                             <small class="form-hint">Imagem de fundo</small>
                         </div>
                     </div>
@@ -274,12 +274,11 @@ $logado = estaLogado();
         const modal = document.getElementById(id);
         if (modal) {
             modal.classList.add('show');
-            modal.style.display = 'flex';
             
             if (id === 'modalCriarRoteiro') {
                 setTimeout(() => {
-                    if (typeof inicializarBusca === 'function') {
-                        inicializarBusca();
+                    if (typeof window.inicializarBuscaIndex === 'function') {
+                        window.inicializarBuscaIndex();
                     }
                 }, 100);
             }
@@ -287,19 +286,17 @@ $logado = estaLogado();
     }
 
     window.fecharModal = function() {
-        document.querySelectorAll('.modal').forEach(m => {
-            m.classList.remove('show');
-            m.style.display = 'none';
-        });
+        document.querySelectorAll('.modal').forEach(m => m.classList.remove('show'));
     }
     </script>
 
+<script src="js/busca-hero.js"></script>
 <script src="js/index.js"></script>
-<script src="js/roteiro.js"></script>
+<script src="js/roteiro-universal.js"></script>
 <?php if (isFornecedor()): ?>
 <script src="js/local.js"></script>
 <?php endif; ?>
-<script src="js/busca-hero.js"></script>
-    
+
+
 </body>
 </html>

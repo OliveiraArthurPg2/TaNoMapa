@@ -1,15 +1,6 @@
-
-
-
-
-
 let posicaoCarousel = 0;
 let animacaoCarousel = null;
 let carouselPausado = false;
-
-
-
-
 
 async function carregarTop5Pontos() {
     console.log('Iniciando carregamento do Top 5...');
@@ -40,10 +31,19 @@ async function carregarTop5Pontos() {
                 const fotoFornecedor = ponto.FotoFornecedor || 'img/default_avatar.png';
                 const idFornecedor = ponto.IdFornecedor || '';
                 
+                // ✅ CORREÇÃO: Mostra avaliação real ou "Novo" se não tiver avaliações
+                let badgeAvaliacao = '';
+                if (ponto.Avaliacao && parseFloat(ponto.Avaliacao) > 0) {
+                    const nota = parseFloat(ponto.Avaliacao).toFixed(1);
+                    badgeAvaliacao = `<span class="badge badge-avaliado">⭐ ${nota}</span>`;
+                } else {
+                    badgeAvaliacao = `<span class="badge badge-novo">🆕 Novo</span>`;
+                }
+                
                 return `
                 <div class="carousel-card" onclick="window.location.href='visualizar-ponto.php?id=${ponto.Id}'">
                     <div class="carousel-img" style="background-image: url('${ponto.Foto_Capa || 'img/default_cover.jpg'}');">
-                        <span class="badge">⭐ ${ponto.Avaliacao ? parseFloat(ponto.Avaliacao).toFixed(1) : '5.0'}</span>
+                        ${badgeAvaliacao}
                     </div>
                     <div class="carousel-info">
                         <h3>${ponto.Nome}</h3>
@@ -128,13 +128,7 @@ window.moverCarousel = function(direcao) {
     }, 500);
 }
 
-
-
-
-
 document.addEventListener('DOMContentLoaded', function() {
     console.log('🟢 index.js carregado (apenas carousel)!');
     carregarTop5Pontos();
 });
-
-

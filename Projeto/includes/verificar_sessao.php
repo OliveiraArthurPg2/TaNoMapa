@@ -1,6 +1,5 @@
 <?php
 
-
 if (session_status() === PHP_SESSION_NONE) {
     session_start();
 }
@@ -14,15 +13,15 @@ function obterUsuarioLogado() {
         return null;
     }
     
-    
+    // Se já tem os dados na sessão, retorna
     if (isset($_SESSION['usuario_dados']) && !empty($_SESSION['usuario_dados'])) {
         return $_SESSION['usuario_dados'];
     }
     
-    
+    // Busca do banco de dados
     global $conn;
     
-    
+    // Garante que a conexão existe
     if (!isset($conn)) {
         require_once __DIR__ . '/../config/conexao.php';
     }
@@ -43,9 +42,9 @@ function obterUsuarioLogado() {
     mysqli_stmt_close($stmt);
     
     if ($usuario) {
-        
+        // Prepara os dados do usuário
         $dadosUsuario = [
-            'id' => $usuario['Id'],
+            'id' => (int)$usuario['ID'],  // ✅ CORRIGIDO: ID maiúsculo + cast para int
             'nome' => $usuario['Nome'],
             'email' => $usuario['Email'],
             'tipo' => $usuario['Tipo'],
@@ -59,7 +58,10 @@ function obterUsuarioLogado() {
             'dataNascimento' => $usuario['Data_Nascimento'] ?? null
         ];
         
+        // ✅ CORREÇÃO: Salva o tipo do usuário na sessão
+        $_SESSION['usuario_tipo'] = $usuario['Tipo'];
         
+        // Salva os dados completos na sessão
         $_SESSION['usuario_dados'] = $dadosUsuario;
         
         return $dadosUsuario;
@@ -72,6 +74,15 @@ function isTurista() {
     if (!estaLogado()) {
         return false;
     }
+    
+    // ✅ CORREÇÃO: Se não tem usuario_tipo na sessão, busca os dados
+    if (!isset($_SESSION['usuario_tipo'])) {
+        $usuario = obterUsuarioLogado();
+        if (!$usuario) {
+            return false;
+        }
+    }
+    
     return isset($_SESSION['usuario_tipo']) && $_SESSION['usuario_tipo'] === 'Turista';
 }
 
@@ -79,6 +90,15 @@ function isFornecedor() {
     if (!estaLogado()) {
         return false;
     }
+    
+    // ✅ CORREÇÃO: Se não tem usuario_tipo na sessão, busca os dados
+    if (!isset($_SESSION['usuario_tipo'])) {
+        $usuario = obterUsuarioLogado();
+        if (!$usuario) {
+            return false;
+        }
+    }
+    
     return isset($_SESSION['usuario_tipo']) && $_SESSION['usuario_tipo'] === 'Fornecedor';
 }
 

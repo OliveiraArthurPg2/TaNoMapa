@@ -1,16 +1,12 @@
-
-
-
-
 console.log('🟢 roteiro-universal.js carregado!');
 
 let todosLocais = [];
 let pontosSelecionados = [];
 let debounceTimer = null;
 
-
-
-
+// =====================================
+// CARREGAR TODOS OS LOCAIS
+// =====================================
 
 async function carregarTodosLocais() {
     if (todosLocais.length > 0) {
@@ -46,9 +42,9 @@ async function carregarTodosLocais() {
     }
 }
 
-
-
-
+// =====================================
+// FUNÇÕES DE INICIALIZAÇÃO POR PÁGINA
+// =====================================
 
 window.inicializarBuscaIndex = async function() {
     console.log('🔵 Inicializando busca INDEX');
@@ -74,7 +70,7 @@ window.inicializarBuscaPerfil = async function() {
     configurarBusca('');
 }
 
-
+// Funções globais de busca
 window.buscarPontos = function(termo) {
     buscarLocais(termo, '');
 }
@@ -83,19 +79,17 @@ window.buscarPontosIndex = function(termo) {
     buscarLocais(termo, 'Index');
 }
 
-
-
-
+// =====================================
+// CONFIGURAÇÃO DE BUSCA
+// =====================================
 
 function configurarBusca(sufixo) {
     const inputId = sufixo ? `buscaPontos${sufixo}` : 'buscaPontos';
-    const resultadosId = sufixo ? `resultadosBusca${sufixo}` : 'resultadosBusca';
-    const selecionadosId = sufixo ? `pontosSelecionados${sufixo}` : 'pontosSelecionados';
-    
     const input = document.getElementById(inputId);
     
+    // ✅ CORREÇÃO: Se não encontrar o input, não tenta configurar
     if (!input) {
-        console.error('❌ Input não encontrado:', inputId);
+        console.log('⚠️ Input não encontrado (normal se não estiver na página):', inputId);
         return;
     }
     
@@ -123,9 +117,9 @@ function configurarBusca(sufixo) {
     });
 }
 
-
-
-
+// =====================================
+// BUSCA E EXIBIÇÃO DE RESULTADOS
+// =====================================
 
 function buscarLocais(termo, sufixo) {
     console.log('🔍 Buscando:', termo);
@@ -210,9 +204,9 @@ function ocultarResultados(sufixo) {
     }
 }
 
-
-
-
+// =====================================
+// GERENCIAR PONTOS SELECIONADOS
+// =====================================
 
 window.adicionarPonto = function(id, sufixo) {
     const local = todosLocais.find(l => l.Id == id);
@@ -321,9 +315,9 @@ function atualizarOrdemPontos(container) {
     pontosSelecionados = novaOrdem;
 }
 
-
-
-
+// =====================================
+// FORMULÁRIOS
+// =====================================
 
 function configurarFormularios() {
     ['', 'Index', 'Destinos', 'Rotas'].forEach(sufixo => {
@@ -384,9 +378,9 @@ async function criarRoteiro(sufixo) {
     }
 }
 
-
-
-
+// =====================================
+// UTILITÁRIOS
+// =====================================
 
 function normalizarTexto(texto) {
     if (!texto) return '';
@@ -431,20 +425,17 @@ window.fecharModal = function() {
     pontosSelecionados = [];
 }
 
-
-
-
+// =====================================
+// INICIALIZAÇÃO
+// =====================================
 
 document.addEventListener('DOMContentLoaded', function() {
     console.log('🟢 DOM carregado - roteiro-universal.js');
     
+    // ✅ CORREÇÃO: Não tenta inicializar busca automaticamente
+    // Só carrega os dados, mas não configura os inputs ainda
     carregarTodosLocais().then(() => {
+        console.log('✅ Locais carregados e prontos');
         configurarFormularios();
-        
-        const pagina = document.body.dataset.page;
-        if (pagina === 'index') inicializarBuscaIndex();
-        else if (pagina === 'destinos') inicializarBuscaDestinos();
-        else if (pagina === 'rotas') inicializarBuscaRotas();
-        else inicializarBuscaPerfil();
     });
 });
