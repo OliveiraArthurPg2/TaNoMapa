@@ -130,24 +130,24 @@ $logado = estaLogado();
                 <span class="modal-close" onclick="fecharModal()">&times;</span>
             </div>
             <div class="modal-body">
-                <form id="formRoteiroDestinos">
+                <form id="formRoteiro">
                     <div class="form-group">
-                        <label for="nomeRoteiroDestinos">Nome do Roteiro *</label>
-                        <input type="text" id="nomeRoteiroDestinos" name="nome" required placeholder="Ex: Tour pelo Centro Histórico">
+                        <label for="nomeRoteiro">Nome do Roteiro *</label>
+                        <input type="text" id="nomeRoteiro" name="nome" required placeholder="Ex: Tour pelo Centro Histórico">
                     </div>
 
                     <div class="form-group">
-                        <label for="bioRoteiroDestinos">Descrição do Roteiro</label>
-                        <textarea id="bioRoteiroDestinos" name="bio" rows="3" placeholder="Descreva seu roteiro (opcional)..."></textarea>
+                        <label for="bioRoteiro">Descrição do Roteiro</label>
+                        <textarea id="bioRoteiro" name="bio" rows="3" placeholder="Descreva seu roteiro (opcional)..."></textarea>
                     </div>
 
                     <div class="form-group">
                         <label>Locais do Roteiro * (mínimo 2)</label>
-                        <input type="text" id="buscaPontosDestinos" class="search-pontos" placeholder="🔍 Buscar local...">
+                        <input type="text" id="buscaPontos" class="search-pontos" placeholder="🔍 Buscar local..." onkeyup="buscarPontos(this.value)">
                         
-                        <div id="resultadosBuscaDestinos" class="search-results"></div>
+                        <div id="resultadosBusca" class="search-results"></div>
                         
-                        <div id="pontosSelecionadosDestinos" class="pontos-selecionados">
+                        <div id="pontosSelecionados" class="pontos-selecionados">
                             <p class="aviso-vazio">Nenhum local adicionado ainda. Use a busca acima para adicionar.</p>
                         </div>
                     </div>
@@ -166,16 +166,16 @@ $logado = estaLogado();
                 <span class="modal-close" onclick="fecharModal()">&times;</span>
             </div>
             <div class="modal-body">
-                <form id="formPontoDestinos">
+                <form id="formPonto">
                     <div class="form-group">
-                        <label for="nomePontoDestinos">Nome do Local *</label>
-                        <input type="text" id="nomePontoDestinos" name="nome" required placeholder="Ex: Museu de Arte Moderna">
+                        <label for="nomePonto">Nome do Local *</label>
+                        <input type="text" id="nomePonto" name="nome" required placeholder="Ex: Museu de Arte Moderna">
                     </div>
 
                     <div class="form-row">
                         <div class="form-group">
-                            <label for="tipoPontoDestinos">Tipo *</label>
-                            <select id="tipoPontoDestinos" name="tipo" required>
+                            <label for="tipoPonto">Tipo *</label>
+                            <select id="tipoPonto" name="tipo" required>
                                 <option value="">Selecione</option>
                                 <option value="Museu">Museu</option>
                                 <option value="Parque">Parque</option>
@@ -191,30 +191,30 @@ $logado = estaLogado();
                         </div>
 
                         <div class="form-group">
-                            <label for="localidadePontoDestinos">Cidade/Estado *</label>
-                            <input type="text" id="localidadePontoDestinos" name="localidade" required placeholder="Ex: São Paulo, SP">
+                            <label for="localidadePonto">Cidade/Estado *</label>
+                            <input type="text" id="localidadePonto" name="localidade" required placeholder="Ex: São Paulo, SP">
                         </div>
                     </div>
 
                     <div class="form-group">
-                        <label for="enderecoPontoDestinos">Endereço Completo *</label>
-                        <input type="text" id="enderecoPontoDestinos" name="endereco" required placeholder="Ex: Av. Paulista, 1578">
+                        <label for="enderecoPonto">Endereço Completo *</label>
+                        <input type="text" id="enderecoPonto" name="endereco" required placeholder="Ex: Av. Paulista, 1578">
                     </div>
 
                     <div class="form-group">
-                        <label for="bioPontoDestinos">Descrição</label>
-                        <textarea id="bioPontoDestinos" name="bio" rows="3" placeholder="Descreva o local (opcional)..."></textarea>
+                        <label for="bioPonto">Descrição</label>
+                        <textarea id="bioPonto" name="bio" rows="3" placeholder="Descreva o local (opcional)..."></textarea>
                     </div>
 
                     <div class="form-row">
                         <div class="form-group">
-                            <label for="fotoPerfilPontoDestinos">Foto de Perfil</label>
-                            <input type="file" id="fotoPerfilPontoDestinos" name="fotoPerfil" accept="image/*">
+                            <label for="fotoPerfilPonto">Foto de Perfil</label>
+                            <input type="file" id="fotoPerfilPonto" name="fotoPerfil" accept="image/*">
                         </div>
 
                         <div class="form-group">
-                            <label for="fotoCapaPontoDestinos">Foto de Capa</label>
-                            <input type="file" id="fotoCapaPontoDestinos" name="fotoCapa" accept="image/*">
+                            <label for="fotoCapaPonto">Foto de Capa</label>
+                            <input type="file" id="fotoCapaPonto" name="fotoCapa" accept="image/*">
                         </div>
                     </div>
 
@@ -237,8 +237,8 @@ $logado = estaLogado();
             
             if (id === 'modalCriarRoteiro') {
                 setTimeout(() => {
-                    if (typeof window.inicializarBuscaDestinos === 'function') {
-                        window.inicializarBuscaDestinos();
+                    if (typeof inicializarBusca === 'function') {
+                        inicializarBusca();
                     }
                 }, 100);
             }
@@ -276,7 +276,7 @@ $logado = estaLogado();
     </script>
 
     <script src="js/destinos.js"></script>
-    <script src="js/roteiro-universal.js"></script>
+    <script src="js/roteiro.js"></script>
     <?php if (isFornecedor()): ?>
     <script src="js/local.js"></script>
     <?php endif; ?>
