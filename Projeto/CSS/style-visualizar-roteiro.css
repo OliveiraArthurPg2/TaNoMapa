@@ -1,0 +1,531 @@
+
+
+
+.ponto-info-overlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.9), transparent);
+    padding: 30px 20px 20px;
+    color: white;
+}
+
+.ponto-info-overlay h3 {
+    font-size: 1.5rem;
+    margin: 0 0 8px 0;
+    font-weight: 700;
+}
+
+.ponto-info-overlay p {
+    margin: 0;
+    font-size: 1rem;
+    opacity: 0.9;
+}
+
+
+.thumbnail-item {
+    position: relative;
+}
+
+.ponto-numero {
+    position: absolute;
+    top: 8px;
+    left: 8px;
+    background: linear-gradient(135deg, #0ea5e9, #06b6d4);
+    color: white;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    font-size: 0.9rem;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+    z-index: 2;
+}
+
+.ponto-nome-mini {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.9), transparent);
+    padding: 20px 8px 8px;
+    color: white;
+    font-size: 0.85rem;
+    font-weight: 600;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+
+.btn-adicionar-ponto {
+    background: linear-gradient(135deg, #10b981, #059669);
+    color: white;
+    border: none;
+    padding: 0.75rem 1.5rem;
+    border-radius: 12px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-size: 0.95rem;
+    box-shadow: 0 4px 12px rgba(16, 185, 129, 0.3);
+}
+
+.btn-adicionar-ponto:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(16, 185, 129, 0.4);
+}
+
+
+.galeria-vazia {
+    text-align: center;
+    padding: 4rem 2rem;
+    background: linear-gradient(135deg, #f3f4f6, #e5e7eb);
+    border-radius: 16px;
+    border: 2px dashed #9ca3af;
+}
+
+.galeria-vazia p {
+    font-size: 1.1rem;
+    color: #6b7280;
+    margin-bottom: 1.5rem;
+}
+
+
+.pontos-detalhados {
+    margin-top: 3rem;
+}
+
+.pontos-detalhados h3 {
+    font-size: 1.5rem;
+    margin-bottom: 1.5rem;
+    color: var(--text-dark);
+}
+
+.ponto-detalhado-card {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    padding: 20px;
+    background: white;
+    border: 2px solid #e5e7eb;
+    border-radius: 16px;
+    margin-bottom: 16px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    position: relative;
+    min-height: 140px;
+}
+
+.ponto-detalhado-card:hover {
+    border-color: #0ea5e9;
+    box-shadow: 0 8px 24px rgba(14, 165, 233, 0.15);
+    transform: translateX(8px);
+}
+
+
+.ponto-detalhado-foto {
+    pointer-events: none;
+}
+
+.ponto-numero-badge {
+    width: 48px;
+    height: 48px;
+    background: linear-gradient(135deg, #0ea5e9, #06b6d4);
+    color: white;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 800;
+    font-size: 1.5rem;
+    flex-shrink: 0;
+}
+
+.ponto-detalhado-foto {
+    width: 120px;
+    height: 120px;
+    border-radius: 12px;
+    overflow: hidden;
+    flex-shrink: 0;
+}
+
+.ponto-detalhado-foto img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.ponto-detalhado-info {
+    flex: 1;
+    cursor: pointer;
+}
+
+.ponto-detalhado-info h4 {
+    font-size: 1.3rem;
+    margin: 0 0 8px 0;
+    color: var(--text-dark);
+    font-weight: 700;
+}
+
+.ponto-tipo,
+.ponto-local {
+    font-size: 0.95rem;
+    color: var(--text-gray);
+    margin: 4px 0;
+}
+
+.ponto-desc {
+    font-size: 0.9rem;
+    color: var(--text-dark);
+    margin-top: 8px;
+    line-height: 1.6;
+}
+
+.ponto-arrow {
+    font-size: 2rem;
+    color: #0ea5e9;
+    flex-shrink: 0;
+    transition: transform 0.3s ease;
+}
+
+.ponto-detalhado-card:hover .ponto-arrow {
+    transform: translateX(8px);
+}
+
+
+.ponto-acoes {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+    flex-shrink: 0;
+}
+
+.btn-remover-ponto {
+    background: linear-gradient(135deg, #ef4444, #dc2626);
+    color: white;
+    border: none;
+    padding: 0.6rem 1rem;
+    border-radius: 10px;
+    font-size: 1.2rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 8px rgba(239, 68, 68, 0.3);
+}
+
+.btn-remover-ponto:hover {
+    transform: scale(1.1);
+    box-shadow: 0 4px 16px rgba(239, 68, 68, 0.4);
+}
+
+
+.modal-content-large {
+    max-width: 900px;
+    width: 90%;
+    max-height: 90vh;
+    overflow-y: auto;
+}
+
+
+.pontos-roteiro-edit {
+    max-height: 300px;
+    overflow-y: auto;
+    border: 2px solid #e5e7eb;
+    border-radius: 12px;
+    padding: 1rem;
+    background: #f9fafb;
+}
+
+.ponto-edit-card {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 12px;
+    background: white;
+    border: 1px solid #e5e7eb;
+    border-radius: 10px;
+    margin-bottom: 10px;
+}
+
+.ponto-edit-card:last-child {
+    margin-bottom: 0;
+}
+
+.ponto-edit-foto {
+    width: 60px;
+    height: 60px;
+    border-radius: 8px;
+    overflow: hidden;
+    flex-shrink: 0;
+}
+
+.ponto-edit-foto img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.ponto-edit-info {
+    flex: 1;
+}
+
+.ponto-edit-info h4 {
+    font-size: 1rem;
+    margin: 0 0 4px 0;
+    color: var(--text-dark);
+    font-weight: 600;
+}
+
+.ponto-edit-info p {
+    font-size: 0.85rem;
+    color: var(--text-gray);
+    margin: 0;
+}
+
+.btn-remover-ponto-edit {
+    background: linear-gradient(135deg, #ef4444, #dc2626);
+    color: white;
+    border: none;
+    padding: 0.5rem 0.8rem;
+    border-radius: 8px;
+    font-size: 1.1rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 6px rgba(239, 68, 68, 0.3);
+    flex-shrink: 0;
+}
+
+.btn-remover-ponto-edit:hover {
+    transform: scale(1.1);
+    box-shadow: 0 4px 12px rgba(239, 68, 68, 0.4);
+}
+
+
+.resultados-busca-edit {
+    max-height: 300px;
+    overflow-y: auto;
+    border: 2px solid #e5e7eb;
+    border-radius: 12px;
+    margin-top: 0.5rem;
+    background: white;
+}
+
+.resultado-busca-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 12px;
+    border-bottom: 1px solid #e5e7eb;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.resultado-busca-item:last-child {
+    border-bottom: none;
+}
+
+.resultado-busca-item:hover {
+    background: #f0f9ff;
+}
+
+.resultado-foto {
+    width: 60px;
+    height: 60px;
+    border-radius: 8px;
+    overflow: hidden;
+    flex-shrink: 0;
+}
+
+.resultado-foto img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.resultado-info {
+    flex: 1;
+}
+
+.resultado-info h4 {
+    font-size: 0.95rem;
+    margin: 0 0 4px 0;
+    color: var(--text-dark);
+    font-weight: 600;
+}
+
+.resultado-info p {
+    font-size: 0.85rem;
+    color: var(--text-gray);
+    margin: 0;
+}
+
+.resultado-add {
+    font-size: 1.5rem;
+    color: #10b981;
+    flex-shrink: 0;
+}
+
+.input-busca {
+    width: 100%;
+    padding: 1rem;
+    border: 2px solid #e5e7eb;
+    border-radius: 12px;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+}
+
+.input-busca:focus {
+    outline: none;
+    border-color: #0ea5e9;
+    box-shadow: 0 0 0 3px rgba(14, 165, 233, 0.1);
+}
+
+.lista-pontos-disponiveis {
+    max-height: 500px;
+    overflow-y: auto;
+    padding: 0.5rem 0;
+}
+
+.ponto-disponivel-card {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    padding: 16px;
+    background: white;
+    border: 2px solid #e5e7eb;
+    border-radius: 12px;
+    margin-bottom: 12px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.ponto-disponivel-card:hover {
+    border-color: #10b981;
+    box-shadow: 0 4px 16px rgba(16, 185, 129, 0.15);
+    transform: translateX(4px);
+}
+
+.ponto-disponivel-foto {
+    width: 80px;
+    height: 80px;
+    border-radius: 10px;
+    overflow: hidden;
+    flex-shrink: 0;
+}
+
+.ponto-disponivel-foto img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.ponto-disponivel-info {
+    flex: 1;
+}
+
+.ponto-disponivel-info h4 {
+    font-size: 1.1rem;
+    margin: 0 0 6px 0;
+    color: var(--text-dark);
+    font-weight: 600;
+}
+
+.ponto-disponivel-info p {
+    font-size: 0.9rem;
+    color: var(--text-gray);
+    margin: 3px 0;
+}
+
+.btn-adicionar-mini {
+    background: linear-gradient(135deg, #10b981, #059669);
+    color: white;
+    border: none;
+    padding: 0.6rem 1.2rem;
+    border-radius: 10px;
+    font-size: 1.2rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 8px rgba(16, 185, 129, 0.3);
+    flex-shrink: 0;
+}
+
+.btn-adicionar-mini:hover {
+    transform: scale(1.1);
+    box-shadow: 0 4px 16px rgba(16, 185, 129, 0.4);
+}
+
+
+.aviso-vazio {
+    text-align: center;
+    color: var(--text-gray);
+    padding: 2rem;
+    font-size: 1rem;
+}
+
+.loading {
+    text-align: center;
+    color: var(--text-gray);
+    padding: 2rem;
+    font-style: italic;
+}
+
+.erro {
+    text-align: center;
+    color: #ef4444;
+    padding: 2rem;
+}
+
+
+@media (max-width: 768px) {
+    .ponto-info-overlay h3 {
+        font-size: 1.2rem;
+    }
+
+    .ponto-info-overlay p {
+        font-size: 0.9rem;
+    }
+
+    .ponto-detalhado-card {
+        flex-wrap: wrap;
+        gap: 16px;
+    }
+
+    .ponto-numero-badge {
+        width: 40px;
+        height: 40px;
+        font-size: 1.2rem;
+    }
+
+    .ponto-detalhado-foto {
+        width: 100%;
+        height: 200px;
+    }
+
+    .ponto-arrow {
+        display: none;
+    }
+    
+    .ponto-acoes {
+        width: 100%;
+        justify-content: center;
+    }
+    
+    .ponto-disponivel-card {
+        flex-direction: column;
+        text-align: center;
+    }
+    
+    .ponto-disponivel-foto {
+        width: 100%;
+        height: 150px;
+    }
+    
+    .btn-adicionar-ponto {
+        width: 100%;
+        justify-content: center;
+    }
+}

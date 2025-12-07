@@ -1,0 +1,207 @@
+.hero-rotas {
+    min-height: 50vh;
+    background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.5)), url('../img/destino.jpeg') center/cover;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    color: white;
+    padding: 8rem 5% 4rem;
+    margin-top: 80px;
+}
+
+.hero-rotas h1 {
+    font-size: 3.5rem;
+    margin-bottom: 1rem;
+}
+
+.filtros {
+    padding: 2rem 5%;
+    background: white;
+}
+
+.container-filtros {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+#filtroOrdem {
+    width: 100%;
+    max-width: 400px;
+    padding: 1rem;
+    border: 2px solid #e1e8ed;
+    border-radius: 8px;
+    font-size: 1rem;
+}
+
+.lista-rotas {
+    padding: 3rem 5%;
+    background: var(--bg-light);
+}
+
+.container-rotas {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.grid-rotas {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+    margin-bottom: 2rem;
+}
+
+.card-rota {
+    background: white;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: var(--shadow-sm);
+    transition: all 0.3s;
+    cursor: pointer;
+}
+
+.card-rota:hover {
+    transform: translateY(-8px);
+    box-shadow: var(--shadow-lg);
+}
+
+.card-img {
+    height: 200px;
+    background-size: cover;
+    background-position: center;
+    position: relative;
+}
+
+.item-badge {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    background: rgba(255, 255, 255, 0.95);
+    padding: 6px 12px;
+    border-radius: 20px;
+    font-weight: 600;
+    font-size: 0.85rem;
+    color: var(--text-dark);
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+.item-badge-novo {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+}
+
+.card-info {
+    padding: 1.5rem;
+}
+
+.card-info h3 {
+    font-size: 1.3rem;
+    margin-bottom: 0.5rem;
+}
+
+.card-bio {
+    color: var(--text-gray);
+    line-height: 1.6;
+    margin-bottom: 1rem;
+    font-size: 0.9rem;
+    min-height: 40px;
+}
+
+.card-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 0.85rem;
+    color: var(--text-gray);
+    padding-top: 1rem;
+    border-top: 1px solid #e1e8ed;
+}
+
+.carousel-creator-wrapper {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+.carousel-creator-wrapper:hover {
+    color: var(--primary-color);
+}
+
+.carousel-creator-avatar {
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid #e1e8ed;
+    background: var(--bg-light);
+}
+
+.paginacao {
+    display: flex;
+    justify-content: center;
+    gap: 0.5rem;
+}
+
+.btn-pagina {
+    padding: 0.5rem 1rem;
+    border: 2px solid var(--primary-color);
+    background: white;
+    color: var(--primary-color);
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: 600;
+    transition: all 0.3s;
+}
+
+.btn-pagina:hover, .btn-pagina.active {
+    background: var(--primary-color);
+    color: white;
+}
+
+.cta-turista {
+    text-align: center;
+    padding: 5rem 5%;
+    background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+    color: white;
+}
+
+.cta-turista h2 {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+}
+
+.aviso-vazio {
+    grid-column: 1 / -1;
+    text-align: center;
+    padding: 3rem;
+    color: var(--text-gray);
+}
+
+.loading {
+    grid-column: 1 / -1;
+    text-align: center;
+    padding: 3rem;
+    color: var(--text-gray);
+}
+
+@media (max-width: 1024px) {
+    .grid-rotas {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 768px) {
+    .grid-rotas {
+        grid-template-columns: 1fr;
+    }
+    
+    .hero-rotas h1 {
+        font-size: 2.5rem;
+    }
+}
